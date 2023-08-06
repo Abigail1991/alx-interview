@@ -6,27 +6,28 @@ This module contains a function related to the lockboxes.
 
 
 def canUnlockAll(boxes):
-    """Determine if all the boxes can be opened.
+    """Determines if all the boxes can be opened.
 
     Args:
-        boxes (list): A list of lists. A key with the same number as a box opens that box.
+        boxes (lst): the list of boxes containing a list of keys.
 
     Returns:
-        bool: True if all boxes can be opened, else False.
+        bool: True if all boxes can be opened, False otherwise.
     """
-    n = len(boxes)  # Total number of boxes
-    visited = [False] * n  # Keep track of visited boxes
-    visited[0] = True  # The first box is unlocked initially
-    stack = [0]  # Start with the first box in the stack
-    
-    while stack:
-        current_box = stack.pop()
-        
-        # Iterate through keys in the current box
-        for key in boxes[current_box]:
-            if key >= 0 and key < n and not visited[key]:
-                visited[key] = True
-                stack.append(key)
-    
-    # Check if all boxes have been visited
-    return all(visited)
+    box_count = len(boxes)
+
+    if box_count > 0:
+        keys = boxes[0]
+        boxes[0] = [-1]
+        while keys:
+            new_keys = []
+            for key in keys:
+                if key < box_count:
+                    if boxes[key] != [-1]:
+                        new_keys += boxes[key]
+                        boxes[key] = [-1]
+            keys = new_keys
+
+        return boxes.count([-1]) == box_count
+
+    return False
