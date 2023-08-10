@@ -18,14 +18,14 @@ def minOperations(n):
         int: the fewest number of operations needed, 0 otherwise.
 
     """
-    char = n
+    chars = n
     operations = 0
-    divisor = 2
+    div = 2
 
-    while char > 1:
-        if char % div == 0:
+    while chars > 1:
+        if chars % div == 0:
             operations += div
-            char /= div
+            chars /= div
         else:
             div += 1
 
