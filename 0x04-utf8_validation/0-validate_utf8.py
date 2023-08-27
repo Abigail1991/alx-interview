@@ -30,7 +30,7 @@ def validUTF8(data):
                 return False
 
         else:
-            if not byte & mask1 and byte & mask2:
+            if not (byte & mask1) and (byte & mask2):
                 return False
         nByte -= 1
 
