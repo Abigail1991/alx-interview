@@ -10,26 +10,28 @@ def validUTF8(data):
         True if data is valid UTF8, False if not
     """
 
-    expected_bytes = 0
-    
-    for num in data:
-        # If no expected bytes, this is a new character
-        if expected_bytes == 0:
-            if (num >> 7) == 0:
+    nByte = 0
+
+    mask1 = 1 << 7
+    mask2 = 1 << 6
+
+    for byte in data:
+        mask = 1 << 7
+
+        if nByte == 0:
+            while byte & mask:
+                nByte += 1
+                mask = mask >> 1
+
+            if nByte == 0:
                 continue
-            elif (num >> 5) == 0b110:
-                expected_bytes = 1
-            elif (num >> 4) == 0b1110:
-                expected_bytes = 2
-            elif (num >> 3) == 0b11110:
-                expected_bytes = 3
-            else:
+
+            if nByte == 1 or nByte > 4:
                 return False
+
         else:
-            # Check if the current byte is a continuation byte
-            if not is_start_byte(num):
+            if not byte & mask1 and byte & mask2:
                 return False
-            expected_bytes -= 1
-        
-    # All bytes have been checked, if there are still expected bytes, it's invalid
-    return expected_bytes == 0
+        nByte -= 1
+
+    return nByte == 0
