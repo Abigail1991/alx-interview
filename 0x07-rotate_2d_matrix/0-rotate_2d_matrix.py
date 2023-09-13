@@ -5,6 +5,15 @@ This module contains a function related to the 2D Matrix Module.
 """
 
 def rotate_2d_matrix(matrix):
+    """
+    Rotate a 2D matrix 90 degrees clockwise in place.
+
+    Args:
+        matrix (List[List[int]]): The input 2D matrix to be rotated.
+
+    Returns:
+        None: The function modifies the input matrix in place.
+    """
     n = len(matrix)
     
     # Transpose the matrix
