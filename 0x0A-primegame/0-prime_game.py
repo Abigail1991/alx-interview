@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-"""
-This is a docstring that provides information about my_function.
-"""
 
+def my_function():
+    pass
 
-def isWinner(x, nums):
+def is_winner(x, nums):
     def sieve_of_eratosthenes(limit):
         primes = [True] * (limit + 1)
         primes[0] = primes[1] = False
@@ -34,7 +33,3 @@ def isWinner(x, nums):
         return "Ben"
     else:
         return None
-
-if __name__ == "__main__":
-    # Test the function
-    print("Winner: {}".format(isWinner(3, [4, 5, 1])))
