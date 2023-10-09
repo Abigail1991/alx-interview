@@ -1,9 +1,22 @@
 #!/usr/bin/python3
 
 def my_function():
-    pass
+    """
+    This is a docstring that provides information about my_function.
+    Add your code here if needed.
+    """
 
 def is_winner(x, nums):
+    """
+    This is a docstring that provides information about the is_winner function.
+    
+    Args:
+        x (int): The number of rounds.
+        nums (list): An array of n for each round.
+        
+    Returns:
+        str: The name of the player that won the most rounds or None if the winner cannot be determined.
+    """
     def sieve_of_eratosthenes(limit):
         primes = [True] * (limit + 1)
         primes[0] = primes[1] = False
